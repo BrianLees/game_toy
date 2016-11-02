@@ -1,24 +1,22 @@
-# README
+# gamify
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To get a working container:
 
-Things you may want to cover:
+```docker-compose build```
 
-* Ruby version
+```docker-compose up -d # The -d runs in detached mode```
 
-* System dependencies
+```docker-compose run -d app rails db:create```
 
-* Configuration
+```docker-compose run -d app rails db:migrate```
 
-* Database creation
 
-* Database initialization
+To get a bash shell in the container: ```docker exec -it <mycontainer> bash```
 
-* How to run the test suite
+Setup and run tests:
+```docker-compose run -e "RAILS_ENV=test" app bin/rails db:create db:migrate```
 
-* Services (job queues, cache servers, search engines, etc.)
+```docker-compose run -e "RAILS_ENV=test" app bin/rails test```
 
-* Deployment instructions
-
-* ...
+#### Docker Container
+The ["Running a Rails development environment in Docker"](http://blog.codeship.com/running-rails-development-environment-docker/) article was used to configure the first iteration of the Docker container.
